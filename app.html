@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Quote Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="topbar">
+      <a class="nav-link" href="index.html">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Portfolio
+      </a>
+      <button id="themeBtn" class="icon-btn" type="button" aria-label="Switch to light mode" title="Toggle theme">
+        <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </nav>
+
+    <header class="hero">
+      <div class="logo-mark" aria-hidden="true">
+        <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M4 17.5C4 13 6.5 9.5 10.5 8l.8 1.6C9.3 10.5 8.3 12 8.2 13.5H11V19H4zm9 0C13 13 15.5 9.5 19.5 8l.8 1.6c-2 .9-3 2.4-3.1 3.9H20V19h-7z"/></svg>
+      </div>
+      <h1>Random Quote Generator</h1>
+      <p class="subtitle">A little inspiration, one quote at a time.</p>
+    </header>
+
+    <main>
+      <div class="chips" role="group" aria-label="Quote category">
+        <button class="chip" type="button" data-category="All" aria-pressed="true">All</button>
+        <button class="chip" type="button" data-category="Motivation" aria-pressed="false">Motivation</button>
+        <button class="chip" type="button" data-category="Life" aria-pressed="false">Life</button>
+        <button class="chip" type="button" data-category="Wisdom" aria-pressed="false">Wisdom</button>
+        <button class="chip" type="button" data-category="Success" aria-pressed="false">Success</button>
+        <button class="chip" type="button" data-category="Philosophy" aria-pressed="false">Philosophy</button>
+      </div>
+
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+
+      <section id="quoteCard" class="quote-card" aria-live="polite">
+        <span class="quote-deco" aria-hidden="true">&ldquo;</span>
+        <blockquote id="quoteText">Loading a quote&hellip;</blockquote>
+        <p id="quoteAuthor" class="author"></p>
+        <span id="quoteTag" class="tag hidden"></span>
+      </section>
+
+      <div class="actions">
+        <button id="newQuoteBtn" class="btn btn-primary" type="button">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>
+          New Quote
+        </button>
+        <button id="copyBtn" class="btn" type="button" disabled>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Quote
+        </button>
+        <button id="shareBtn" class="btn" type="button" disabled>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+          Share Quote
+        </button>
+        <button id="favoriteBtn" class="btn" type="button" aria-pressed="false" disabled>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+          <span id="favoriteLabel">Favorite</span>
+        </button>
+      </div>
+
+      <section class="favorites" aria-labelledby="favTitle">
+        <div class="favorites-head">
+          <h2 id="favTitle">Favorites</h2>
+          <span id="favCount" class="count">0</span>
+        </div>
+        <p id="emptyFavorites" class="empty">No favorites yet. Tap the Favorite button to save a quote.</p>
+        <ul id="favoritesList"></ul>
+      </section>
+    </main>
+  </div>
+
+  <footer><p>&copy; 2026 [Group Name]. Powered by the DummyJSON Quotes API.</p></footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
